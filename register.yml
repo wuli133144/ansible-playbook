@@ -1,0 +1,10 @@
+---
+- hosts: all
+  gather_facts: no
+  tasks: 
+    - name: register
+      shell : hostname
+      register: info
+    
+    - name: display
+      debug: msg="{{info.stdout}}"

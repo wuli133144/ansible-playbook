@@ -1,5 +1,9 @@
 ---
 - hosts: all
+  gather_facts: false
+  vars: 
+     key: 12
   tasks:
-  - name: test ping
-  ping:
+        - name: test ping
+         
+          debug: msg="{{key}}----->" 

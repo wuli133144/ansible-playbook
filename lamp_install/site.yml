@@ -1,0 +1,9 @@
+---
+- name : install mysqld
+  hosts: all
+  gather_facts: no
+  roles:
+      - db
+
+  
+     

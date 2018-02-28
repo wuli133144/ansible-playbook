@@ -1,0 +1,17 @@
+
+
+---
+- name: install mysql
+  yum: name={{item}} state=present
+  with_items:
+      - mysql-server
+      - mysql
+      - MYSQL-python
+ 
+
+
+- name: copy config file
+  template: src=my.cf dest=/etc/my.conf
+  notify:
+    - started mysql 
+      

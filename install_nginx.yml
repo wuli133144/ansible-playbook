@@ -1,0 +1,12 @@
+---
+- hosts: all
+  gather_facts: no
+  tasks:
+     - name: install nginx
+       yum : name=nginx state=present
+       
+     -name: copy nginx.conf
+      template: src=/opt/nginx.conf dest=/opt/
+
+     - name: start nginx
+       service : name=nginx state=started 

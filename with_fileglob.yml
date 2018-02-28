@@ -1,0 +1,9 @@
+
+---
+- hosts:
+  gather_facts: no 
+  tasks:
+     - name: debug
+       debug: msg={{item}}
+       with_fileglob:
+           - ./*.yml

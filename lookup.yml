@@ -1,0 +1,22 @@
+---
+- hosts: all
+  gather_facts: no
+  tasks:
+    - name: debug 
+      debug: msg="{{item}}"
+      with_items:
+         - nginx
+         - php
+         - mysql
+
+    - name: install nginx php mysql 
+      yum: name={{item}} state=present
+      with_items:
+            - nginx 
+            - php 
+            - mysql
+    - name: start service
+      service: name={{item}} state=started
+      with_items:
+              -php
+              

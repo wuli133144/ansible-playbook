@@ -1,0 +1,23 @@
+---
+- hosts: all
+  gather_facts: no
+  tasks:
+     - name: install apache
+       yum: name={{item}} state=present
+       with_items:
+           - httpd
+           - httpd-devel 
+     - name: copy conf file
+       copy:
+           src: "{{item.src}}"
+           dest: "{{item.dest}}"
+           owner: root
+           mode: 0644
+           group: root
+       with_items:
+           - {
+                src: /tmp/httpd.conf,
+                dest: /etc/httpd/httpd.conf 
+             } 
+     - name: start apache
+       service: name=httpd state=started enabled=yes
